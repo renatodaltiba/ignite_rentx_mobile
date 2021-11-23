@@ -1,6 +1,14 @@
 import React from "react";
+import { Accessory } from "../../components/Accessory";
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
+
+import speedSvg from "../../assets/icons/speed.svg";
+import accelerationSvg from "../../assets/icons/acceleration.svg";
+import forceSvg from "../../assets/icons/force.svg";
+import gasolineSvg from "../../assets/icons/gasoline.svg";
+import exchangeSvg from "../../assets/icons/exchange.svg";
+import peopleSvg from "../../assets/icons/people.svg";
 
 import {
   Container,
@@ -15,7 +23,10 @@ import {
   Price,
   Rent,
   About,
+  Accessories,
+  Footer,
 } from "./styles";
+import { Button } from "../../components/Button";
 
 export function CarDetails() {
   return (
@@ -45,6 +56,15 @@ export function CarDetails() {
           </Rent>
         </Details>
 
+        <Accessories>
+          <Accessory name="380Km/h" icon={speedSvg} />
+          <Accessory name="3.2s" icon={accelerationSvg} />
+          <Accessory name="800 HP" icon={forceSvg} />
+          <Accessory name="Gasolina" icon={gasolineSvg} />
+          <Accessory name="Auto" icon={exchangeSvg} />
+          <Accessory name="2 Pessoas" icon={peopleSvg} />
+        </Accessories>
+
         <About>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis atque
           esse recusandae ducimus, neque pariatur nobis repellat beatae maxime
@@ -52,6 +72,9 @@ export function CarDetails() {
           fuga?
         </About>
       </Content>
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   );
 }
