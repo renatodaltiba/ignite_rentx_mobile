@@ -40,13 +40,27 @@ import {
 import { Button } from "../../components/Button";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
+import { StatusBar } from "react-native";
 
-export function SchedulingDetails() {
+export function SchedulingDetails({ navigation }) {
   const theme = useTheme();
+
+  const handleNavigateToSchedulingComplete = () => {
+    navigation.navigate("SchedulingComplete");
+  };
   return (
     <Container>
+      <StatusBar
+        barStyle="dark-content"
+        translucent
+        backgroundColor="transparent"
+      />
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
       </Header>
 
       <CarImages>
@@ -112,7 +126,10 @@ export function SchedulingDetails() {
         </RentalPrice>
       </Content>
       <Footer>
-        <Button title="Alugar agora" />
+        <Button
+          title="Alugar agora"
+          onPress={handleNavigateToSchedulingComplete}
+        />
       </Footer>
     </Container>
   );

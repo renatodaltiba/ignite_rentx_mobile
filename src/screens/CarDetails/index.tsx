@@ -27,12 +27,25 @@ import {
   Footer,
 } from "./styles";
 import { Button } from "../../components/Button";
+import { StatusBar } from "react-native";
 
-export function CarDetails() {
+export function CarDetails({ navigation }) {
+  const handleNavigateToScheduling = () => {
+    navigation.navigate("Scheduling");
+  };
   return (
     <Container>
+      <StatusBar
+        barStyle="dark-content"
+        translucent
+        backgroundColor="transparent"
+      />
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
       </Header>
 
       <CarImages>
@@ -73,7 +86,7 @@ export function CarDetails() {
         </About>
       </Content>
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleNavigateToScheduling} />
       </Footer>
     </Container>
   );

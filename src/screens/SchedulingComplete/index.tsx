@@ -7,7 +7,7 @@ import DoneSvg from "../../assets/icons/done.svg";
 import { StatusBar } from "react-native";
 import { ConfirmButton } from "../../components/ConfirmButton";
 
-export function SchedulingComplete() {
+export function SchedulingComplete({ navigation }) {
   const { width } = useWindowDimensions();
 
   return (
@@ -30,7 +30,10 @@ export function SchedulingComplete() {
         </Message>
 
         <Footer>
-          <ConfirmButton title="OK" />
+          <ConfirmButton
+            title="OK"
+            onPress={() => navigation.navigate("Home")}
+          />
         </Footer>
       </Content>
     </Container>

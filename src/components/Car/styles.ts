@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RectButton } from "react-native-gesture-handler";
 
-export const Container = styled.View`
+export const Container = styled(RectButton)`
   width: 100%;
   height: 126px;
 
@@ -11,8 +12,8 @@ export const Container = styled.View`
   justify-content: space-between;
   align-items: center;
 
-  padding: 24px;
-  margin-bottom: 16px;
+  padding: ${RFValue(24)}px;
+  margin-bottom: ${RFValue(16)}px;
 `;
 
 export const Details = styled.View``;
@@ -34,7 +35,7 @@ export const About = styled.View`
   flex-direction: row;
   align-items: center;
 
-  margin-top: 16px;
+  margin-top: ${RFValue(16)}px;
 `;
 export const Rent = styled.View`
   margin-right: 24px;
