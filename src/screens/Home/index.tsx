@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Container, Header, TotalCars, HeaderContent, CarList } from "./styles";
 import Logo from "../../assets/icons/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Car } from "../../components/Car/Index";
+import { api } from "../../services/api";
+import { CarDTO } from "../../dtos/CarDTO";
+import { Loading } from "../../components/Loading";
 
 export function Home({ navigation }) {
-  const carData = {
-    brand: "Audi",
-    name: "RS 5 Coupé",
-    rent: {
-      period: "Ao dia",
-      price: 120,
-    },
-    thumbnail:
-      "https://img3.gratispng.com/dy/8f95649810232d4c055c7605e174f092/L0KzQYm3U8MyN5NufZH0aYP2gLBuTcIxOWgyeedtaT3kSH65UME5NZJ6fNs2c0iwQoG4V71ifZVuReUDLXPkgn7olfRqNWZmetg8Y3O4Rba4WMcxNmE8Sqs8MEK1QYa5UsQ5OmQ8S6UDNUSxgLBu/kisspng-2017-audi-a8-2018-audi-s8-2017-audi-s8-car-audi-5abf3cc55e1870.0729302215224823733854.png",
-  };
+  const [cars, setCars] = useState<CarDTO[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleCarDetails = () => {
+  function handleCarDetails() {
+    console.log("entrou");
     navigation.navigate("CarDetails");
-  };
+  }
+  useEffect(() => {
+    async function fetchCars() {
+      try {
+        const response = await api.get<CarDTO[]>("/cars");
+        setCars(response.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCars();
+  }, []);
+
   return (
     <>
       <StatusBar style="light" />
@@ -31,13 +41,17 @@ export function Home({ navigation }) {
             <TotalCars>Total de 12 carros</TotalCars>
           </HeaderContent>
         </Header>
-        <CarList
-          data={[1, 2, 3, 4, 5, 6]}
-          keyExtractor={(item) => String(item)}
-          renderItem={({ item }) => (
-            <Car data={carData} onPress={handleCarDetails} />
-          )}
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <CarList
+            data={cars}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <Car data={item} onPress={handleCarDetails} />
+            )}
+          />
+        )}
       </Container>
     </>
   );
