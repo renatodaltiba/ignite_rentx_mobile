@@ -4,6 +4,7 @@ import { useWindowDimensions } from "react-native";
 import { Container, Content, Message, Title, Footer } from "./styles";
 import LogoSvg from "../../assets/icons/logo_background_gray.svg";
 import DoneSvg from "../../assets/icons/done.svg";
+import { StatusBar } from "react-native";
 import { ConfirmButton } from "../../components/ConfirmButton";
 
 export function SchedulingComplete() {
@@ -11,6 +12,11 @@ export function SchedulingComplete() {
 
   return (
     <Container>
+      <StatusBar
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
+      />
       <LogoSvg width={width} />
 
       <Content>

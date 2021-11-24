@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { RectButton } from "react-native-gesture-handler";
+import { StatusBar } from "react-native";
 
 export const Container = styled(RectButton)`
   width: 80px;
